@@ -20,17 +20,13 @@ namespace ScriptCs
         public void Initialize()
         {
             var builder = new ContainerBuilder();
-            var types = new[]
-                {
-                    typeof (ScriptHostFactory),
-                    typeof (FileSystem),
-                    typeof (PackageAssemblyResolver),
-                    typeof (PackageContainer),
-                    typeof (FilePreProcessor),
-                    typeof (ScriptPackResolver)
-                };
 
-            builder.RegisterTypes(types).AsImplementedInterfaces();
+            builder.RegisterType<ScriptHostFactory>().As<IScriptHostFactory>();
+            builder.RegisterType<FileSystem>().As<IFileSystem>();
+            builder.RegisterType<PackageAssemblyResolver>().As<IPackageAssemblyResolver>();
+            builder.RegisterType<PackageContainer>().As<IPackageContainer>();
+            builder.RegisterType<FilePreProcessor>().As<IFilePreProcessor>();
+            builder.RegisterType<ScriptPackResolver>().As<IScriptPackResolver>();
 
             if (_debug)
             {
